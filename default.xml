@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <remote  name="aosp"
+           fetch=".."
+           review="https://android-review.googlesource.com/" />
+  <default revision="master"
+           remote="aosp"
+           sync-j="4" />
+
+  <manifest-server url="http://android-smartsync.corp.google.com/android.googlesource.com/manifestserver" />
+
+  <project path="build/blueprint" name="platform/build/blueprint" groups="pdk,tradefed" />
+  <project path="build/soong" name="platform/build/soong" groups="pdk,tradefed" >
+    <linkfile src="root.bp" dest="Android.bp" />
+    <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
+  </project>
+  <project path="art" name="platform/art" groups="pdk" />
+  <project path="bionic" name="platform/bionic" groups="pdk" />
+  <project path="bootable/recovery" name="platform/bootable/recovery" groups="pdk" />
+  <project path="compatibility/cdd" name="platform/compatibility/cdd" groups="pdk" />
+
+  <repo-hooks in-project="platform/tools/repohooks" enabled-list="pre-upload" />
+</manifest>
